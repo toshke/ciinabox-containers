@@ -23,6 +23,7 @@ RUN apt-get update -qq && apt-get install -qqy \
   groff \
   less \
   zip \
+  gettext-base \
   && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
   && sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd \
   && mkdir -p /var/run/sshd \
@@ -36,6 +37,7 @@ RUN apt-get update -qq && apt-get install -qqy \
   && curl -L "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" > /tmp/packer.zip \
   && unzip -o /tmp/packer.zip -d /opt/packer \
   && pip install awscli
+
 
 EXPOSE 22
 
