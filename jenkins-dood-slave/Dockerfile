@@ -9,6 +9,7 @@ ENV PACKER_VERSION "0.9.0"
 
 # Let's start with some basic stuff.
 RUN apt-get update -qq && apt-get install -qqy \
+  gettext-base \
   apt-transport-https \
   ca-certificates \
   lxc \
@@ -38,6 +39,10 @@ RUN apt-get update -qq && apt-get install -qqy \
   && unzip -o /tmp/packer.zip -d /opt/packer \
   && pip install awscli
 
+# Install git-lfs
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && \
+    apt-get install -y --no-install-recommends git-lfs && \
+    git lfs install
 
 EXPOSE 22
 
